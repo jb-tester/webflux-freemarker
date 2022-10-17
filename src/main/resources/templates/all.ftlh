@@ -1,5 +1,10 @@
 <#-- @ftlvariable name="family" type="reactor.core.publisher.Flux<com.mytests.spring.reactive.webfluxfreemarker.Person>" -->
-<h1>default location</h1>
+<h3>default location</h3>
+Links:
+<p><a href="/persons/ages/1">by id</a></p>
+<p><a href="/persons/names/andrey">by name</a></p>
+<p><a href="/persons/ages/40">by age</a></p>
+<br/>
 <h2>-------map:</h2>
 <#list family?map(f -> f.name) as f>
    ${f?index}     ${f} <br/>
@@ -18,6 +23,4 @@
 </#list>
 <h2>-------</h2>
 
-<a href="1">by id</a>
-<a href="names/andrey">by name</a>
-<a href="/persons/ages/40">by age</a>
+
