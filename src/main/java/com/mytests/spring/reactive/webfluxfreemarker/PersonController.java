@@ -3,8 +3,8 @@ package com.mytests.spring.reactive.webfluxfreemarker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.result.view.Rendering;
@@ -15,7 +15,11 @@ public class PersonController {
 
      @Autowired
      PersonRepo personRepo;
-
+     
+     @ModelAttribute("common_str_attr")
+     public String str_attr(){
+         return "fooBarAttribute";
+     }
 
     @GetMapping("/")
     public Rendering getAll(){
@@ -39,7 +43,7 @@ public class PersonController {
     @GetMapping("/ages/{age}")
     public String getByAge(Model model, @PathVariable String age) {
         model.addAttribute("age_attr", age);
-        model.addAttribute("personsByAge", personRepo.getPersonsByAge(Integer.valueOf(age)));
+        model.addAttribute("personsByAge", personRepo.getPersonsByAge(Integer.parseInt(age)));
         return "byAge";
     }
 }
